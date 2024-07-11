@@ -1,0 +1,116 @@
+<!-- home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Purchase Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9; /* added a light gray background */
+        }
+        .container {
+            max-width: 600px; /* added a container with a max width */
+            margin: 40px auto; /* centered the container */
+            padding: 20px;
+            background-color: #fff; /* added a white background */
+            border: 1px solid #ddd; /* added a light gray border */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* added a subtle shadow */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold; /* made labels bold */
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0; /* added a light gray background */
+            border: 1px solid #ddd; /* added a light gray border */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Vehicle Insurance Prediction</h2>
+        <form method="post">
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="Age" required>
+            
+            <label for="driving_license">Driving License:</label>
+            <select id="driving_license" name="Driving_License" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="region_code">Region Code:</label>
+            <input type="text" id="region_code" name="Region_Code" required>
+
+            <label for="previously_insured">Previously Insured:</label>
+            <select id="previously_insured" name="Previously_Insured" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="annual_premium">Annual Premium:</label>
+            <input type="text" id="annual_premium" name="Annual_Premium" required>
+
+            <label for="policy_sales_channel">Policy Sales Channel:</label>
+            <input type="text" id="policy_sales_channel" name="Policy_Sales_Channel" required>
+
+            <label for="vintage">Vintage:</label>
+            <input type="text" id="vintage" name="Vintage" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="Gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="vehicle_age">Vehicle Age:</label>
+            <select id="vehicle_age" name="Vehicle_Age" required>
+                <option value="< 1 Year">&lt; 1 Year</option>
+                <option value="1-2 Year">1-2 Year</option>
+                <option value="> 2 Years">&gt; 2 Years</option>
+            </select>
+
+            <label for="vehicle_damage">Vehicle Damage:</label>
+            <select id="vehicle_damage" name="Vehicle_Damage" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <h3>Prediction Result:</h3>
+                <p>{{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
