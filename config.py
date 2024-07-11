@@ -14,7 +14,8 @@ class DataIngestionConfig:
         
 class DataTranformationConfig:
     def __init__(self):
-        self.preprocessor_path = os.path.join("artifacts","preprocessor.pkl")
+        self.preprocess_dir = "artifacts"
+        self.preprocessor_path = os.path.join(self.preprocess_dir,"preprocessor.pkl")
         
         self.num_col = [
             'Age',
@@ -29,4 +30,9 @@ class DataTranformationConfig:
         self.cat_col = ['Gender', 'Vehicle_Age', 'Vehicle_Damage']
         
         self.target_col = "Response"
+        
+class ModelTrainingConfig:
+    def __init__(self):
+        self.model_dir = "artifacts"
+        self.model_path = os.path.join(self.model_dir,"model.pkl")
         

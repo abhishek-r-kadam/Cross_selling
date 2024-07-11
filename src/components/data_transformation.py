@@ -50,12 +50,14 @@ class DataTranformation:
             test_df = pd.read_csv(test_path)
             
             logging.info("Splitting data into X and y Started")
-            X_train_df = train_df.drop(columns=[self.data_tranforamtion_config.target_col])
+            X_train_df = train_df.drop(columns=[self.data_tranforamtion_config.target_col],axis=1)
             y_train_df = train_df[self.data_tranforamtion_config.target_col]
             
-            X_test_df = test_df.drop(columns=[self.data_tranforamtion_config.target_col])
+            X_test_df = test_df.drop(columns=[self.data_tranforamtion_config.target_col],axis=1)
             y_test_df = test_df[self.data_tranforamtion_config.target_col]
             logging.info("Completed")
+            
+            os.makedirs(os.path.join("artifacts","preprocessed"),exist_ok=True)
             
             preprocessor = self.preprocessor()
             logging.info("Processing Started.")
@@ -63,11 +65,13 @@ class DataTranformation:
             X_test_df_processed = preprocessor.transform(X_test_df)
             logging.info("Completed.")
             
+            train_arr = np.c_[X_train_df_processed, np.array(y_train_df)]
+            test_arr = np.c_[X_test_df_processed, np.array(y_test_df)]
             
             save_object(self.data_tranforamtion_config.preprocessor_path,preprocessor)
             logging.info("Object Saved")
             
-            return (X_train_df_processed,y_train_df,X_test_df_processed,y_test_df)
+            return (train_arr,test_arr)
             
         except Exception as e:
             raise CustomException(e,sys)
