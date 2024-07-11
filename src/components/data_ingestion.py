@@ -10,6 +10,7 @@ import pandas as pd
 
 from sklearn.model_selection import train_test_split
 
+from src.components.data_transformation import DataTranformation
 
 class DataIngestion:
     def __init__(self):
@@ -42,7 +43,11 @@ class DataIngestion:
         
 if __name__ == "__main__":
     data_ingestion = DataIngestion()
-    data_ingestion.initiate_data_ingestion()
+    train_path,test_path = data_ingestion.initiate_data_ingestion()
+    
+    datatransform = DataTranformation()
+    datatransform.initiate_data_transformation(train_path=train_path,test_path=test_path)
+    
 
             
 
